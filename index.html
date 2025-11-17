@@ -84,13 +84,29 @@
         border-radius: 12px;
         background: #000;
     }
+
+    #clear-btn {
+        background: #900;
+        border: none;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    #clear-btn:hover {
+        background: #b00;
+    }
 </style>
 </head>
 <body>
 
 <!-- LEFT QUEUE -->
 <div id="queue">
-    <h2>Queue</h2>
+    <h2 style="display:flex; justify-content:space-between; align-items:center;">
+        Queue
+        <button id="clear-btn">Clear</button>
+    </h2>
 </div>
 
 <!-- MAIN PLAYER -->
@@ -156,6 +172,16 @@ document.getElementById("add-btn").onclick = () => {
         addToQueue(url);
         document.getElementById("url-input").value = "";
     }
+};
+
+document.getElementById("clear-btn").onclick = () => {
+    const queue = document.getElementById("queue");
+
+    // Remove all queue-item elements
+    [...queue.querySelectorAll(".queue-item")].forEach(item => item.remove());
+
+    // Clear the player too
+    document.getElementById("player").src = "";
 };
 </script>
 
